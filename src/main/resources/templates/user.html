@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head.html :: head">
+</head>
+
+<body>
+
+<nav th:replace="fragments/head.html :: navigation">
+</nav>
+
+<div class="container">
+    <div class="row py-2">
+        <div class="col-12">
+            <a class="btn btn-primary" th:href="@{/user/new}">Add User</a>
+        </div>
+        <div class="col-12">
+            <table class="table table-bordered my-2">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}">
+                    <th scope="row" th:text="${user.id}">1</th>
+                    <td th:text="${user.name}">Admin</td>
+                    <td>
+                        <a class="btn btn-success" th:href="@{/product/{user_id} (user_id = ${user.id})}"><i class="fa fa-shopping-basket"></i></a>
+                        <a class="btn btn-danger" th:href="@{/product/update/{id}(id = ${user.id})}"><i class="far fa-address-card"></i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-12">
+            <a class="btn btn-primary" th:href="@{/product/cart}">To cart</a>
+        </div>
+    </div>
+</div>
+
+<th:block th:replace="fragments/footer.html :: scripts"></th:block>
+</body>
+</html>
